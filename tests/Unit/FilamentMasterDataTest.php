@@ -9,8 +9,10 @@ use App\Filament\Resources\ProdiResource;
 use App\Filament\Resources\RoleResource;
 use App\Filament\Resources\SemesterResource;
 use App\Filament\Resources\UserResource;
+use App\Filament\Resources\UserResource\Pages\ListUsers;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Livewire\Livewire;
 use Tests\TestCase;
 
 class FilamentMasterDataTest extends TestCase
@@ -38,6 +40,17 @@ class FilamentMasterDataTest extends TestCase
             $this->assertNotEmpty($resource::getNavigationLabel());
             $this->assertNotEmpty($resource::getModel());
         }
+    }
+
+    public function test_user_resource_list_page_renders_without_type_error(): void
+    {
+        $this->seed();
+
+        $admin = User::where('email', 'admin@siakad.ac.id')->first();
+        $this->actingAs($admin);
+
+        Livewire::test(ListUsers::class)
+            ->assertStatus(200);
     }
 
     public function test_master_data_models_can_be_created_via_eloquent(): void
