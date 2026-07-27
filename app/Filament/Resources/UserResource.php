@@ -57,6 +57,7 @@ class UserResource extends Resource
                         Forms\Components\Select::make('roles')
                             ->label('Peran (Role)')
                             ->relationship('roles', 'name')
+                            ->getOptionLabelFromRecordUsing(fn ($record) => $record->name instanceof \BackedEnum ? $record->name->value : (string) $record->name)
                             ->multiple()
                             ->preload()
                             ->required(),
@@ -97,7 +98,8 @@ class UserResource extends Resource
                 Tables\Filters\TernaryFilter::make('is_active')
                     ->label('Status Aktif'),
                 Tables\Filters\SelectFilter::make('roles')
-                    ->relationship('roles', 'name'),
+                    ->relationship('roles', 'name')
+                    ->getOptionLabelFromRecordUsing(fn ($record) => $record->name instanceof \BackedEnum ? $record->name->value : (string) $record->name),
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
