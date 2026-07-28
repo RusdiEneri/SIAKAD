@@ -48,4 +48,10 @@ class SiakadPortalTest extends TestCase
             ->assertSee('Status KRS')
             ->assertStatus(200);
     }
+
+    public function test_guest_is_redirected_to_login_when_accessing_portal(): void
+    {
+        $response = $this->get('/portal');
+        $response->assertRedirect('/admin/login');
+    }
 }
