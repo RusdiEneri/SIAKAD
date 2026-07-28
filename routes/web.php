@@ -8,6 +8,10 @@ Route::get('/', function () {
     return redirect('/admin');
 });
 
+Route::get('/login', function () {
+    return redirect('/admin/login');
+})->name('login');
+
 Route::middleware(['auth'])->group(function () {
     Route::get('/portal', DashboardComponent::class)->name('portal.dashboard');
 
