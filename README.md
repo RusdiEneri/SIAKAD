@@ -45,7 +45,7 @@ Ikuti langkah-langkah di bawah ini untuk memasang dan menjalankan SIAKAD di ling
 ### 1. Clone / Siapkan Repository
 Masuk ke direktori kerja web server Anda (misal `C:\laragon\www\SIAKAD`):
 ```bash
-git clone <repository-url> SIAKAD
+git clone https://github.com/RusdiEneri/SIAKAD
 cd SIAKAD
 ```
 
